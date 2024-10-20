@@ -2,6 +2,7 @@ import random
 import json
 from openai import OpenAI
 import os
+import math
 
 api = input("请输入API(不输入默认为https://api.deepseek.com)：") or "https://api.deepseek.com"
 
@@ -127,14 +128,15 @@ player = ["玩家1", "玩家2", "玩家3", "玩家4", "玩家5", "玩家6", "玩
 
 now_play_list = []
 
+least = math.ceil(N+N+N/2)#最少玩家数量
 
 #不加判断，相信使用这个的人都会输入正确的数字
 while True:
-    player_num = int(input(f"请输入玩家数量,最大为{len(player)}个(最少{N+N+1}个人):"))
-    if N+N+1 <= player_num <= len(player):
+    player_num = int(input(f"请输入玩家数量,最大为{len(player)}个(最少{least}个人):"))
+    if least <= player_num <= len(player):
         break
     else:
-        print(f"玩家数量必须在{N+N+1}到{len(player)}之间，请重新输入。")
+        print(f"玩家数量必须在{least}到{len(player)}之间，请重新输入。")
 
 for i in range(player_num):
     now_play_list.append(player[i])
