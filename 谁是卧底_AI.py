@@ -54,7 +54,7 @@ class Assistant:
         print(f"JSON解析错误: {e}")
         print(f"原始字符串: {self.ai_message}")
         print("提交的信息是如下:\n",self.smessages)
-    self.smessages.append({"role": "assistant", "content": str(self.ai_message)})  
+    self.smessages.append({"role": "assistant", "content": self.ai_message["talk"])  
     return self.ai_message
 
    def del_ai_message(self):
@@ -196,8 +196,8 @@ while len(now_play_list)-len(wodi_players) > len(wodi_players)  :
         print(f"{name}（{player_roles[name]}）:{ai_news['tuili']}\n")
         vote_list.append(ai_news["vote"])
         #删除记忆
-        ai.del_ai_message()
-        ai.jia(f"这是上一轮你们的对话：{fayan}。")
+        #ai.del_ai_message()
+        #ai.jia(f"这是上一轮你们的对话：{fayan}。")
     print(vote_list)
     #统计票数
     vote_zidian = {}
