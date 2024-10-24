@@ -196,8 +196,8 @@ while len(now_play_list)-len(wodi_players) > len(wodi_players)  :
             ai_news = ai.talk(f"请投票，以下是所有的玩家的发言：{fayan}。请根据所有人的发言选择你想投票的人：{now_play_list}。你的输出需要严格以json格式输出，你需要返回以下内容：（name: 你的名字，tuili：对场上局势进行分析，来决定你的投票。vote：输出想投的玩家名字，不允许弃票）")
             vote_list.append(ai_news["vote"])
             #删除记忆
-            #ai.del_ai_message()
-            #ai.jia(f"这是上一轮你们的对话：{fayan}。")
+            ai.del_ai_message()
+            ai.jia(f"这是上一轮你们的对话：{fayan}。")
     print(vote_list)
     #统计票数
     vote_zidian = {}
