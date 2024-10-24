@@ -196,8 +196,8 @@ while len(now_play_list)-len(wodi_players) > len(wodi_players)  :
         print(f"{name}（{player_roles[name]}）:{ai_news['tuili']}\n")
         vote_list.append(ai_news["vote"])
         #删除记忆
-        #ai.del_ai_message()
-        #ai.jia(f"这是上一轮你们的对话：{fayan}。")
+        ai.del_ai_message()
+        ai.jia(f"这是上一轮你们的对话：{fayan}。")
     print(vote_list)
     #统计票数
     vote_zidian = {}
