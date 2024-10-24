@@ -167,7 +167,8 @@ for name in now_play_list:
                                      2.每轮描述后，玩家投票选出怀疑是卧底的人，得票最多者将被淘汰，若是卧底则出局，平民胜利，否则游戏继续
                                      3.所有卧底被找出，平民胜利。卧底人数与平民人数相等。卧底胜利，#提示 你的词语是：{player_roles[name]}。你既可能是卧底，也可能是平民，
                                      4.在你发现你可能是卧底后，你需要根据场上玩家的发言来调整自己的发言，并避免描述自己的词语，以避免被识破。
-                                     5.描述词语的小技巧：首先，观察词语，提取特征点，之后，运用平描、现挂的诸多手法来进行描述。还有，可以使用一个词，一个句子，一句诗歌，一个成语等多种手法来描述，期待你的描述
+                                     5.描述词语的小技巧：首先，观察词语，提取特征点，之后，运用平描、现挂的诸多手法来进行描述。还有，可以使用一个词语，一个句子，一句诗歌，一个成语等多种手法来描述，期待你的描述。
+                                     6.
                                      #输出 你的输出严格需要以json格式输出，你需要返回以下内容：（name: 你的名字，tuili：对场上局势进行分析，来决定你的发言，talk：你的发言，vote：你想投票给谁，请直接输出玩家名字。不允许弃票"""})
 
 while len(now_play_list)-len(wodi_players) > len(wodi_players)  :
@@ -193,11 +194,12 @@ while len(now_play_list)-len(wodi_players) > len(wodi_players)  :
             vote_list.append(vote)
         else:
             ai = object_factory.get_object(name)
-            ai_news = ai.talk(f"请投票，以下是所有的玩家的发言：{fayan}。请根据所有人的发言选择你想投票的人：{now_play_list}。你的输出需要严格以json格式输出，你需要返回以下内容：（name: 你的名字，tuili：对场上局势进行分析，来决定你的投票。vote：输出想投的玩家名字，不允许弃票）")
+            ai_news = ai.talk(f"请投票，以下是所有的玩家的发言：{fayan}。请根据所有人的发言选择你想投票的人：{now_play_list}。你的输出需要严格以标准的json格式输出，你需要返回以下内容：（name: 你的名字，tuili：对场上局势进行分析，来决定你的投票。vote：输出想投的玩家名字，不允许弃票）")
             vote_list.append(ai_news["vote"])
+            print(f"{name}:投票完成，他投给了{ai_news['vote']}")
             #删除记忆
-            ai.del_ai_message()
-            ai.jia(f"这是上一轮你们的对话：{fayan}。")
+            #ai.del_ai_message()
+            #ai.jia(f"这是上一轮你们的对话：{fayan}。")
     print(vote_list)
     #统计票数
     vote_zidian = {}
@@ -233,3 +235,5 @@ while len(now_play_list)-len(wodi_players) > len(wodi_players)  :
     # new AI会根据场上情况，重新分配词语吗？其实不会hhh，我也不知道怎么判断他，希望能成功！我写了3个小时的
 else:
     print("游戏结束，卧底胜利")
+    
+print(f"游戏结束，{wodi_players}是卧底，其他玩家是平民,卧底词是{wodi}。")
