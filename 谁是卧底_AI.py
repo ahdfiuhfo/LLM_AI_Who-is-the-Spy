@@ -54,7 +54,6 @@ class Assistant:
         print(f"JSON解析错误: {e}")
         print(f"原始字符串: {self.ai_message}")
         print("提交的信息是如下:\n",self.smessages)
-    self.smessages.append({"role": "assistant", "content": self.ai_message["talk"])  
     return self.ai_message
 
    def del_ai_message(self):
